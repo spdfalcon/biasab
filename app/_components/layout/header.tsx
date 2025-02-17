@@ -88,13 +88,19 @@ export function Header() {
                   <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
                 </button>
 
+                {/* Invisible bridge to prevent menu from closing */}
+                <div 
+                  className="absolute -bottom-1 left-0 right-0 h-2"
+                  onMouseEnter={() => setHoveredService('main')}
+                />
+
                 {hoveredService === 'main' && (
                   <div 
-                    className="absolute top-full right-0 w-80 p-4 mt-2 bg-white rounded-2xl shadow-xl ring-1 ring-black/5"
+                    className="absolute top-[calc(100%-4px)] right-0 w-80 bg-white rounded-2xl shadow-xl ring-1 ring-black/5"
                     onMouseEnter={() => setHoveredService('main')}
                     onMouseLeave={() => setHoveredService('')}
                   >
-                    <div className="grid gap-4">
+                    <div className="p-4 grid gap-2">
                       {services.map((service) => (
                         <Link
                           key={service.name}
