@@ -3,6 +3,7 @@ import { Vazirmatn } from "next/font/google";
 import { Footer } from "./_components/layout/footer";
 import { Header } from "./_components/layout/header";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
 
 const vazir = Vazirmatn({ subsets: ["arabic"] });
 

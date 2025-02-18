@@ -1,46 +1,94 @@
+import Link from 'next/link'
+
+const footerLinks = {
+  quickAccess: [
+    { name: 'خانه', href: '/' },
+    { name: 'درباره ما', href: '/about' },
+    { name: 'خدمات', href: '/services' },
+    { name: 'بلاگ', href: '/blog' },
+    { name: 'تماس با ما', href: '/contact' },
+  ],
+  services: [
+    { name: 'برنامه بدنسازی', href: '/services/workout' },
+    { name: 'آنالیز بدنی', href: '/services/analysis' },
+    { name: 'مشاوره تخصصی', href: '/services/consulting' },
+  ],
+  contact: {
+    address: 'تهران، خیابان ولیعصر، پلاک 123',
+    phone: '۰۲۱-۱۲۳۴۵۶۷۸',
+    email: 'info@biasab.ir',
+    workHours: 'شنبه تا چهارشنبه - ۹ صبح تا ۵ عصر'
+  }
+}
+
 export function Footer() {
   return (
     <footer className="bg-gray-100">
       <div className="container py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h3 className="font-bold text-lg mb-4">درباره بی اعصاب</h3>
-          <p className="text-secondary-600">
-            پلتفرم جامع مدیریت تمرینات بدنسازی برای ارتباط مربیان و شاگردان
+          <p className="text-gray-600">
+            پلتفرم جامع مدیریت تمرینات بدنسازی برای ارتباط مربیان و شاگردان.
+            با کمک بهترین مربیان به اهداف خود برسید.
           </p>
         </div>
         
         <div>
           <h3 className="font-bold text-lg mb-4">دسترسی سریع</h3>
           <ul className="space-y-2">
-            <li><a href="/about" className="text-secondary-600 hover:text-secondary-900">درباره ما</a></li>
-            <li><a href="/services" className="text-secondary-600 hover:text-secondary-900">خدمات</a></li>
-            <li><a href="/blog" className="text-secondary-600 hover:text-secondary-900">بلاگ</a></li>
-            <li><a href="/contact" className="text-secondary-600 hover:text-secondary-900">تماس با ما</a></li>
+            {footerLinks.quickAccess.map(link => (
+              <li key={link.href}>
+                <Link 
+                  href={link.href}
+                  className="text-gray-600 hover:text-primary-600 transition-colors"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
           <h3 className="font-bold text-lg mb-4">خدمات</h3>
           <ul className="space-y-2">
-            <li><a href="/services/training" className="text-secondary-600 hover:text-secondary-900">برنامه تمرینی</a></li>
-            <li><a href="/services/diet" className="text-secondary-600 hover:text-secondary-900">برنامه تغذیه</a></li>
-            <li><a href="/services/coaching" className="text-secondary-600 hover:text-secondary-900">مربیگری آنلاین</a></li>
+            {footerLinks.services.map(link => (
+              <li key={link.href}>
+                <Link 
+                  href={link.href}
+                  className="text-gray-600 hover:text-primary-600 transition-colors"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
           <h3 className="font-bold text-lg mb-4">تماس با ما</h3>
-          <ul className="space-y-2">
-            <li className="text-secondary-600">تهران، خیابان ولیعصر</li>
-            <li className="text-secondary-600">تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</li>
-            <li className="text-secondary-600">ایمیل: info@biasab.ir</li>
+          <ul className="space-y-2 text-gray-600">
+            <li>{footerLinks.contact.address}</li>
+            <li>تلفن: {footerLinks.contact.phone}</li>
+            <li>ایمیل: {footerLinks.contact.email}</li>
+            <li>ساعات کاری: {footerLinks.contact.workHours}</li>
           </ul>
         </div>
       </div>
       
-      <div className="border-t">
-        <div className="container py-6 text-center text-secondary-600">
-          © {new Date().getFullYear()} بی اعصاب - تمامی حقوق محفوظ است.
+      <div className="border-t border-gray-200">
+        <div className="container py-6 flex items-center justify-between">
+          <p className="text-gray-600">
+            © {new Date().getFullYear()} بی اعصاب - تمامی حقوق محفوظ است.
+          </p>
+          <div className="flex items-center gap-4">
+            <Link href="/terms" className="text-gray-600 hover:text-primary-600 transition-colors">
+              قوانین و مقررات
+            </Link>
+            <Link href="/privacy" className="text-gray-600 hover:text-primary-600 transition-colors">
+              حریم خصوصی
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

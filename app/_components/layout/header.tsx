@@ -8,23 +8,31 @@ import { cn } from '@/app/_lib/utils'
 
 const services = [
   {
-    name: 'برنامه تمرینی',
-    href: '/services/training',
-    description: 'برنامه‌های تمرینی شخصی‌سازی شده',
+    name: 'برنامه بدنسازی',
+    href: '/services/workout',
+    description: 'برنامه تمرینی شخصی‌سازی شده',
     icon: Dumbbell
   },
   {
     name: 'آنالیز بدنی',
     href: '/services/analysis',
-    description: 'بررسی تخصصی فرم و ساختار بدن',
+    description: 'ارزیابی و آنالیز ترکیب بدنی',
     icon: Activity
   },
   {
-    name: 'مربیان مجرب',
-    href: '/services/trainers',
-    description: 'دسترسی به بهترین مربیان',
+    name: 'مشاوره تخصصی',
+    href: '/services/consulting',
+    description: 'مشاوره با مربیان مجرب',
     icon: Users
   }
+]
+
+const mainNavLinks = [
+  { name: 'خانه', href: '/' },
+  { name: 'خدمات', href: '/services' },
+  { name: 'درباره ما', href: '/about' },
+  { name: 'بلاگ', href: '/blog' },
+  { name: 'تماس با ما', href: '/contact' },
 ]
 
 export function Header() {
@@ -123,59 +131,44 @@ export function Header() {
                 )}
               </div>
 
-              <Link 
-                href="/about" 
-                className="text-gray-700 hover:text-primary-600 transition-colors"
-              >
-                درباره ما
-              </Link>
-              <Link 
-                href="/blog" 
-                className="text-gray-700 hover:text-primary-600 transition-colors"
-              >
-                بلاگ
-              </Link>
-              <Link 
-                href="/contact" 
-                className="text-gray-700 hover:text-primary-600 transition-colors"
-              >
-                تماس با ما
-              </Link>
+              {mainNavLinks.map((link) => (
+                <Link 
+                  key={link.name}
+                  href={link.href} 
+                  className="text-gray-700 hover:text-primary-600 transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
 
             {/* Auth Buttons & Mobile Menu */}
             <div className="flex items-center gap-4">
               <div className="hidden lg:flex items-center gap-3">
-                <Link href="/login">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="hover:border-primary-500 hover:text-primary-600"
-                  >
-                    ورود
-                  </Button>
-                </Link>
-                <Link href="/register">
-                  <Button 
-                    size="sm"
-                    className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600"
-                  >
-                    ثبت نام
-                  </Button>
-                </Link>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="hover:border-primary-500 hover:text-primary-600"
+                  
+                >
+                  <Link href="/login">ورود</Link>
+                </Button>
+                <Button 
+                  size="sm"
+                  className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600"
+                  
+                >
+                  <Link href="/register">ثبت نام</Link>
+                </Button>
               </div>
 
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="lg:hidden p-2 -mr-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                aria-label="Toggle menu"
               >
-                <span className="sr-only">منو</span>
-                {isOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
@@ -185,10 +178,8 @@ export function Header() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "fixed inset-0 z-40 lg:hidden transition-all duration-300 ease-out",
-          isOpen 
-            ? "opacity-100 pointer-events-auto" 
-            : "opacity-0 pointer-events-none"
+          "fixed inset-0 z-40 lg:hidden transition-all duration-300",
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
         onClick={() => setIsOpen(false)}
       >
@@ -198,7 +189,7 @@ export function Header() {
         {/* Menu Panel */}
         <div
           className={cn(
-            "absolute left-0 top-16 bottom-0 w-full max-w-sm bg-white transition-all duration-300 ease-out",
+            "absolute left-0 top-16 bottom-0 w-full max-w-sm bg-white transition-all duration-300",
             isOpen ? "translate-x-0" : "translate-x-full"
           )}
           onClick={e => e.stopPropagation()}
@@ -224,51 +215,36 @@ export function Header() {
               ))}
             </div>
 
-            <div className="border-t border-gray-100">
-              <div className="p-4 space-y-1">
+            <div className="border-t border-gray-100 p-4 space-y-1">
+              {mainNavLinks.map((link) => (
                 <Link
-                  href="/about"
+                  key={link.name}
+                  href={link.href}
                   className="block p-3 rounded-lg hover:bg-gray-50 text-gray-700 transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  درباره ما
+                  {link.name}
                 </Link>
-                <Link
-                  href="/blog"
-                  className="block p-3 rounded-lg hover:bg-gray-50 text-gray-700 transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  بلاگ
-                </Link>
-                <Link
-                  href="/contact"
-                  className="block p-3 rounded-lg hover:bg-gray-50 text-gray-700 transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  تماس با ما
-                </Link>
-              </div>
+              ))}
             </div>
 
             <div className="mt-auto p-4 border-t border-gray-100">
               <div className="grid gap-3">
-                <Link href="/login" className="w-full">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full justify-center"
-                  >
-                    ورود
-                  </Button>
-                </Link>
-                <Link href="/register" className="w-full">
-                  <Button
-                    size="lg"
-                    className="w-full justify-center bg-gradient-to-r from-primary-600 to-primary-500"
-                  >
-                    ثبت نام
-                  </Button>
-                </Link>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full justify-center"
+                  
+                >
+                  <Link href="/login">ورود</Link>
+                </Button>
+                <Button
+                  size="lg"
+                  className="w-full justify-center bg-gradient-to-r from-primary-600 to-primary-500"
+                  
+                >
+                  <Link href="/register">ثبت نام</Link>
+                </Button>
               </div>
             </div>
           </div>
