@@ -1,9 +1,9 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
-import { Footer } from "./_components/layout/footer";
-import { Header } from "./_components/layout/header";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
+import Wrapper from "./_components/layout/Wrapper";
 
 const vazir = Vazirmatn({ subsets: ["arabic"] });
 
@@ -14,15 +14,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fa" dir="rtl">
       <body className={vazir.className}>
-        <Header />
-        {children}
-        <Footer />
+        <Wrapper>{children}</Wrapper> {/* این تغییر مهمه */}
       </body>
     </html>
   );
