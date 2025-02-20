@@ -25,7 +25,7 @@ const post = {
   tags: ['عضله‌سازی', 'مبتدی', 'آموزش'],
 }
 
-export default function BlogPost({ }: { params: { slug: string } }) {
+export default function BlogPost() {
   return (
     <main className="pt-32 pb-16">
       <div className="container">
