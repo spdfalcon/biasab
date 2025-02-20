@@ -8,7 +8,9 @@ import Wrapper from "./_components/layout/Wrapper";
 const vazir = Vazirmatn({ 
   subsets: ["arabic"],
   display: 'swap',
-  adjustFontFallback: false
+  preload: true,
+  adjustFontFallback: false,
+  fallback: ['system-ui', 'arial']
 });
 
 export const metadata: Metadata = {

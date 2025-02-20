@@ -89,12 +89,13 @@ const servicesData = {
 }
 
 type ServiceType = keyof typeof servicesData;
-interface ServicePageProps {
-  params: {
-    type: string;
-  };
-}
-export default function ServicePage({ params }: ServicePageProps) {
+
+type Props = {
+  params: { type: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
+
+export default async function ServicePage({ params }: Props) {
   const serviceType = params.type as ServiceType;
   const service = servicesData[serviceType];
 
