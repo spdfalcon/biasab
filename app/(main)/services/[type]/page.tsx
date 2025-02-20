@@ -90,14 +90,7 @@ const servicesData = {
 
 type ServiceType = keyof typeof servicesData;
 
-type PageProps = {
-  params: {
-    type: string
-  }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-export default function ServicePage({ params }: PageProps) {
+export default function ServicePage({ params }: { params: { type: string } }) {
   const serviceType = params.type as ServiceType;
   const service = servicesData[serviceType];
 
