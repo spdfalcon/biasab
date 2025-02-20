@@ -90,14 +90,14 @@ const servicesData = {
 
 type ServiceType = keyof typeof servicesData;
 
-type PageParams = {
+interface Props {
   params: {
-    type: ServiceType
+    type: string
   }
 }
 
-export default function ServicePage({ params }: PageParams) {
-  const serviceType = params.type;
+export default function ServicePage({ params }: Props) {
+  const serviceType = params.type as ServiceType;
   const service = servicesData[serviceType];
 
   if (!service) {
