@@ -5,7 +5,11 @@ import "./globals.css";
 import "leaflet/dist/leaflet.css";
 import Wrapper from "./_components/layout/Wrapper";
 
-const vazir = Vazirmatn({ subsets: ["arabic"] });
+const vazir = Vazirmatn({ 
+  subsets: ["arabic"],
+  display: 'swap',
+  adjustFontFallback: false
+});
 
 export const metadata: Metadata = {
   title: "BiAsab | بی اعصاب",
