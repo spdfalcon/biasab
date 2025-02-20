@@ -90,8 +90,14 @@ const servicesData = {
 
 type ServiceType = keyof typeof servicesData;
 
-export default function ServicePage({ params }: { params: { type: string } }) {
-  const serviceType = params.type as ServiceType;
+type PageParams = {
+  params: {
+    type: ServiceType
+  }
+}
+
+export default function ServicePage({ params }: PageParams) {
+  const serviceType = params.type;
   const service = servicesData[serviceType];
 
   if (!service) {
